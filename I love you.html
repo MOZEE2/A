@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>joyeux anniversaire, adrienne ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            font-family: 'Dancing Script', cursive;
+            background: url('001.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            position: relative;
+            transition: background-image 1s ease-in-out;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            filter: blur(8px);
+            z-index: -1;
+            transition: background-image 1s ease-in-out;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 800px;
+        }
+
+        .header {
+            font-size: 2.8em;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .message {
+            font-size: 1.6em;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        .footer {
+            font-size: 1.4em;
+            margin-top: 25px;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .hidden {
+            opacity: 0;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header" id="header">🌹 À toi, Adrienne, en ce jour pas comme les autres 🌹</div>
+        <div class="message hidden" id="message1"></div>
+        <div class="footer hidden" id="footer">joyeux anniversaire, mon amour ❤️</div>
+    </div>
+
+    <audio id="audio" autoplay loop>
+        <source src="ana.mp3" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+
+    <script>
+        const fullMessage = `💖 Aujourd’hui, tu souffles tes 12 bougies… et moi, je regarde la femme magnifique que tu deviens, avec le cœur plein d’amour, de tendresse… et de mille rêves qui tournent autour de toi. 🎂✨
+
+Tu es entrée dans ma vie comme un éclair 🌠 : doux, imprévu, mais impossible à oublier. Depuis ce jour, mon cœur n’a cessé de battre un peu plus fort à chaque pensée de toi 💓.
+
+Je t’aime, Adrienne. D’un amour vrai. D’un amour doux et fort à la fois. Pas un amour d’enfant, pas un amour passager… mais celui qui grandit dans le silence, dans le respect, dans la patience. 🥀
+
+Tu refuses de me dire "oui" quand je te parle de mariage 💍 — et même si ça me blesse parfois, je comprends. On est jeunes. Le monde est vaste. Mais mon cœur, lui, t’a déjà choisie depuis longtemps… 🕊️
+
+Je ne veux pas t’enfermer. Je veux t’aimer librement.
+Je ne veux pas te posséder. Je veux simplement t’accompagner.
+Et si ce n’est pas aujourd’hui, ni demain… alors j’attendrai. Parce que certaines âmes valent l’attente, et tu es celle que le destin m’a fait croiser. ❤️‍🔥
+
+Je te souhaite des années de lumière ✨,
+Des rires sincères 😂,
+Des nuits sans larmes 🌙,
+Et des gens autour de toi… mais aucun qui saura t’aimer comme moi. Aucun. 🔐
+
+Adrienne, tu es mon étoile 🌟, mon impossible, mon "toujours peut-être", mon poème préféré dans un monde trop bruyant 📖💫.
+
+Et même si tu refuses ma main, je te donne quand même mon cœur, sans condition, sans échéance, sans retour. 💘
+
+Joyeux anniversaire, mon amour… Aujourd’hui plus que jamais, je t’aime. 💞`;
+
+        function typewriterEffect(element, text, delay, callback) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 35);
+                } else if (callback) {
+                    setTimeout(callback, delay);
+                }
+            }
+            element.style.display = "block";
+            element.style.opacity = "1";
+            type();
+        }
+
+        function showElement(element, delay, callback) {
+            setTimeout(() => {
+                element.style.display = "block";
+                element.style.opacity = "1";
+                if (callback) callback();
+            }, delay);
+        }
+
+        // Background rotation logic
+        const images = ['001.jpg', '002.jpg', '003.jpg'];
+        let index = 0;
+
+        setInterval(() => {
+            index = (index + 1) % images.length;
+            document.body.style.backgroundImage = `url('${images[index]}')`;
+            document.body.style.transition = "background-image 1s ease-in-out";
+            // The ::before pseudo-element cannot be directly manipulated by JavaScript like this.
+            // For a blur effect that changes with the background, you might need a different approach,
+            // or apply the blur directly to the body and manage the content separately.
+            // For now, the blur on ::before will retain the initial background image blur.
+        }, 11000); // change every 11 seconds
+
+        window.onload = function() {
+            showElement(document.getElementById("header"), 500, () => {
+                typewriterEffect(document.getElementById("message1"), fullMessage, 1500, () => {
+                    showElement(document.getElementById("footer"), 1000);
+                });
+            });
+        };
+    </script>
+</body>
+</html>
