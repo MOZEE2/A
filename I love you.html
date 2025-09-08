@@ -1,9 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>joyeux anniversaire, adrienne ❤️</title>
+    <title>Joyeux Anniversaire, Adrienne ❤️</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
@@ -81,7 +81,7 @@
     <div class="container">
         <div class="header" id="header">🌹 À toi, Adrienne, en ce jour pas comme les autres 🌹</div>
         <div class="message hidden" id="message1"></div>
-        <div class="footer hidden" id="footer">joyeux anniversaire, mon amour ❤️</div>
+        <div class="footer hidden" id="footer">Joyeux anniversaire, mon amour ❤️</div>
     </div>
 
     <audio id="audio" autoplay loop>
@@ -90,7 +90,7 @@
     </audio>
 
     <script>
-        const fullMessage = `💖 Aujourd’hui, tu souffles tes 12 bougies… et moi, je regarde la femme magnifique que tu deviens, avec le cœur plein d’amour, de tendresse… et de mille rêves qui tournent autour de toi. 🎂✨
+        const fullMessage = `💖 Aujourd’hui, tu souffles tes 18 bougies… et moi, je regarde la femme magnifique que tu deviens, avec le cœur plein d’amour, de tendresse… et de mille rêves qui tournent autour de toi. 🎂✨
 
 Tu es entrée dans ma vie comme un éclair 🌠 : doux, imprévu, mais impossible à oublier. Depuis ce jour, mon cœur n’a cessé de battre un peu plus fort à chaque pensée de toi 💓.
 
@@ -103,17 +103,17 @@ Je ne veux pas te posséder. Je veux simplement t’accompagner.
 Et si ce n’est pas aujourd’hui, ni demain… alors j’attendrai. Parce que certaines âmes valent l’attente, et tu es celle que le destin m’a fait croiser. ❤️‍🔥
 
 Je te souhaite des années de lumière ✨,
-Des rires sincères 😂,
-Des nuits sans larmes 🌙,
-Et des gens autour de toi… mais aucun qui saura t’aimer comme moi. Aucun. 🔐
+des rires sincères 😂,
+des nuits sans larmes 🌙,
+et des gens autour de toi… mais aucun qui saura t’aimer comme moi. Aucun. 🔐
 
 Adrienne, tu es mon étoile 🌟, mon impossible, mon "toujours peut-être", mon poème préféré dans un monde trop bruyant 📖💫.
 
 Et même si tu refuses ma main, je te donne quand même mon cœur, sans condition, sans échéance, sans retour. 💘
 
-Joyeux anniversaire, mon amour… Aujourd’hui plus que jamais, je t’aime. 💞`;
+Joyeux anniversaire, mon amour… aujourd’hui plus que jamais, je t’aime. 💞`;
 
-        function typewriterEffect(element, text, delay, callback) {
+        function typeWriterEffect(element, text, delay, callback) {
             let i = 0;
             function type() {
                 if (i < text.length) {
@@ -145,15 +145,12 @@ Joyeux anniversaire, mon amour… Aujourd’hui plus que jamais, je t’aime. �
             index = (index + 1) % images.length;
             document.body.style.backgroundImage = `url('${images[index]}')`;
             document.body.style.transition = "background-image 1s ease-in-out";
-            // The ::before pseudo-element cannot be directly manipulated by JavaScript like this.
-            // For a blur effect that changes with the background, you might need a different approach,
-            // or apply the blur directly to the body and manage the content separately.
-            // For now, the blur on ::before will retain the initial background image blur.
+            document.body.querySelector("body::before")?.style?.setProperty('background-image', `url('${images[index]}')`);
         }, 11000); // change every 11 seconds
 
         window.onload = function() {
             showElement(document.getElementById("header"), 500, () => {
-                typewriterEffect(document.getElementById("message1"), fullMessage, 1500, () => {
+                typeWriterEffect(document.getElementById("message1"), fullMessage, 1500, () => {
                     showElement(document.getElementById("footer"), 1000);
                 });
             });
